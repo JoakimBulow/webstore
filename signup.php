@@ -22,7 +22,7 @@ else{
 <form action="newuser.php" method="post">
     User name: <input type="text" name="user"><br>
     Password: <input type="text" name="password"><br>
-    Address: <input type="text" name="email"><br>
+    Address: <input type="text" name="address"><br>
     <input type="submit">
 </form>
 </body>

@@ -1,8 +1,12 @@
 <html>
 <BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
 
-Welcome <?php echo $_POST["user"]; ?><br>
-Your email address is: <?php echo $_POST["email"]; ?>
+<?php
+echo "Welcome ";
+$user = htmlspecialchars($_POST["user"]);
+echo $user;
+echo ", you are now logged in. <br>";
+?><br>
 
 </body>
 </html>

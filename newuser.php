@@ -2,8 +2,9 @@
 <BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
 
 <?php
-echo "Welcome ";
-echo $_POST["user"];
+echo "Welcome";
+$user = htmlspecialchars($_POST["user"]);
+echo $user;
 echo ". You are now registered. Please purchase something expensive.";
 ?>
 </body>
