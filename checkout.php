@@ -1,8 +1,6 @@
+<html>
+<BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: xenux
- * Date: 2013-09-18
- * Time: 21:48
- * To change this template use File | Settings | File Templates.
- */
+//TODO: Check if all necessary info is already in DB, else display a form and ask for it (credit card, address etc).
+?>
+</html>
