@@ -1,3 +1,7 @@
+<?php
+    echo 'Payment etc..';
+?>
+
 <html>
 <BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
 <?php

@@ -1,6 +1,3 @@
-<html>
-<BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
-
 <?php
 $user = htmlspecialchars($_POST["user"]);
 $password = htmlspecialchars($_POST["password"]);
@@ -30,6 +27,8 @@ if($user == mysql_result($result,0,"username")){
     echo 'password entered: ' . $hashedPass . '<br>';
     if($trueHashedPass == $hashedPass){
         echo 'you are authenticated<br>';
+        //Setting a cookie with 1h expiration time
+        setcookie("user", $user, time()+3600);
     }
 }
 
@@ -39,7 +38,8 @@ function safeSQL( $value ) {
     return '"' . mysql_real_escape_string( $value ) . '"';
 }
 ?>
-
+<html>
+<BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
 
 
 </body>

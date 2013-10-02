@@ -1,6 +1,3 @@
-<html>
-<BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
-
 <?php
 echo "You entered: " . $user = htmlspecialchars($_POST["user"]);
 
@@ -66,7 +63,6 @@ else{
         echo "That user name is already in use.<br>";
     }else{
         $salt = getSalt();
-        //TODO: hash password+salt
         $hashedPassword = sha1($salt . $password);
         $sql_query = "INSERT INTO customers VALUES ('','$user','$hashedPassword','$salt','','','','','','')";
         mysql_query($sql_query);
@@ -87,6 +83,10 @@ function getSalt() {
 }
 
 ?>
+
+
+<html>
+<BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
 
 </body>
 </html>
