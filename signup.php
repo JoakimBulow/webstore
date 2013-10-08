@@ -1,8 +1,5 @@
 <?php
-/**
- *  signup.php
- * TODO: Check the inputs and create SSL session when submit button is clicked.
- */
+
 echo "Sign up:<br>";
 
 //Check if HTTPS is used:
