@@ -1,13 +1,18 @@
 
 <?php
 
+$sql_database="webmaster";
+
 $sql_user="webmaster";
 $sql_password="TempPass123";
-$sql_database="webmaster";
 mysql_connect('localhost',$sql_user,$sql_password);
+
+
+//mysql_connect('localhost', ini_get('mysql.default.user'), ini_get('mysql.default.password'));
+
 @mysql_select_db($sql_database) or die( "Unable to select database");
 
-$sql_query="CREATE TABLE customers (id int(6) NOT NULL auto_increment,username varchar(20),password varchar(40),salt varchar(8),first varchar(20) ,last varchar(20),
+$sql_query="CREATE TABLE customers (id int(6) NOT NULL auto_increment,username varchar(20),password varchar(40),salt varchar(8),surname varchar(20) ,lastname varchar(20),
 address varchar(40), postal varchar(30), country varchar(25) ,creditcard varchar(25), completeInfo BOOLEAN, PRIMARY KEY (id),UNIQUE id (id),KEY id_2 (id))";
 
 mysql_query($sql_query);

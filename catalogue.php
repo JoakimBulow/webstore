@@ -14,9 +14,6 @@ if (isset($_SESSION['HTTP_USER_AGENT']))
     if ($_SESSION['HTTP_USER_AGENT'] != $_SERVER['HTTP_USER_AGENT'])//may create hash of user agent
     {
         //The session now comes from another user agent. Seems fishy so why not just destroy the entire session..?
-        //echo "Wrong User Agent.. <br>";
-        //echo "<br>Session user agent: " . $_SESSION['HTTP_USER_AGENT'];
-        //echo "<br>Server user agent: " . $_SERVER['HTTP_USER_AGENT'];
         session_destroy();
         exit();
     }
@@ -30,13 +27,6 @@ if(isset($_SESSION['user'])){
 else{
     echo "Welcome guest";
 }
-/*
-//For cookies:
-if (isset($_COOKIE["user"]))
-    echo "Welcome " . $_COOKIE["user"];
-else
-    echo "Welcome guest";
-*/
 
 echo ' to our pet store! Enter in the fields below how many pets you would like:<br>';
 ?>

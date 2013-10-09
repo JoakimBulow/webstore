@@ -44,9 +44,10 @@ else{
 //Password was secure
 
     //Connecting to database
+    $sql_database="webmaster";
+    //mysql_connect();
     $sql_user="webmaster";
     $sql_password="TempPass123";
-    $sql_database="webmaster";
     mysql_connect('localhost',$sql_user,$sql_password);
     @mysql_select_db($sql_database) or die( "Unable to select database");
 
@@ -73,10 +74,15 @@ else{
         $hashedPassword = sha1($salt . $password);
         $sql_query = "INSERT INTO customers VALUES ('','$user','$hashedPassword','$salt','','','','','','',false)";
         mysql_query($sql_query);
+        echo "added<br>";
     }
     mysql_close();
 }
 
+
+function safeSQL( $value ) {
+    return '"' . mysql_real_escape_string( $value ) . '"';
+}
 
 //Returns a random string to use as salt in passwords
 function getSalt() {

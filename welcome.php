@@ -9,13 +9,15 @@ if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
 
 $user = htmlspecialchars($_POST["user"]);
 $password = htmlspecialchars($_POST["password"]);
-echo "You ar trying to log in with the user name: " . $user . "...<br>";
+echo "You are trying to log in with the user name: " . $user . "...<br>";
 
 //Connecting to database
+$sql_database="webmaster";
+//mysql_connect();
 $sql_user="webmaster";
 $sql_password="TempPass123";
-$sql_database="webmaster";
 mysql_connect('localhost',$sql_user,$sql_password);
+
 @mysql_select_db($sql_database) or die( "Unable to select database");
 
 //Getting all user names in database
@@ -35,10 +37,6 @@ if(!empty($user) && $user == mysql_result($result,0,"username")){
     if($trueHashedPass == $hashedPass){
         echo 'you are authenticated<br>';
 
-        //setcookie( name, value, expire, path, domain, secure, httponly);
-        //setcookie("user", $user, time()+3600, '/', 'localhost', true, true);
-
-        //Use session insted of cookies:
         session_start();
         session_regenerate_id(true);
         // store session data

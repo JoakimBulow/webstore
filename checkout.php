@@ -25,16 +25,25 @@ else{
     echo "Lets pay " . $user . ", shall we?<br>";
 
     //Connecting to database
-    connect();
+    $sql_database="webmaster";
+    $sql_user="webmaster";
+    $sql_password="TempPass123";
+    mysql_connect('localhost',$sql_user,$sql_password);
+
+    //mysql_connect();
+    @mysql_select_db($sql_database) or die( "Unable to select database");
 
     $sql_query = 'SELECT * FROM customers WHERE username=' . safeSQL($user);
     $result=mysql_query($sql_query);
     $complete = mysql_result($result,0,"completeInfo");
+
+    //Do we have all the complete info about to user?
     if($complete == 1){
-        echo "completeInfo is true<br>";
+        echo "<form action=\"checkout2.php\">
+        <input type=\"submit\" value=\"Commit to buy\">
+        </form>";
     }
     else{
-        echo "completeInfo is false<br>";
         displayForm();
     }
 
@@ -60,14 +69,19 @@ else{
 function displayForm(){
 //TODO: Display a form with the necessary fields that are missing in the DB
 
-}
+    echo "<br><br>
+    <form action=\"checkout2.php\" method=\"post\">
+    Surname: <input type=\"text\" name=\"surname\"><br>
+    Last name: <input type=\"text\" name=\"lastname\"><br>
+    Address: <input type=\"text\" name=\"address\"><br>
+    Postal Code: <input type=\"text\" name=\"postal\"><br>
+    Country: <input type=\"text\" name=\"country\"><br>
+    Credit Card number: <input type=\"text\" name=\"creditcard\"><br>
+    <input type=\"submit\" value=\"Commit to buy\">
+    <br><br>
+    </body>
+    </html>";
 
-function connect(){
-    $sql_user="webmaster";
-    $sql_password="TempPass123";
-    $sql_database="webmaster";
-    mysql_connect('localhost',$sql_user,$sql_password);
-    @mysql_select_db($sql_database) or die( "Unable to select database");
 }
 
 function safeSQL( $value ) {
