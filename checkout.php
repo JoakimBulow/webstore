@@ -19,6 +19,29 @@ if (isset($_SESSION['HTTP_USER_AGENT']))
 if(isset($_SESSION['user'])){
     $user = $_SESSION['user'];
     echo "Lets pay " . $user . ", shall we?<br>";
+
+    //Connecting to database
+    //connect();
+
+    $sql_user="webmaster";
+    $sql_password="TempPass123";
+    $sql_database="webmaster";
+    mysql_connect('localhost',$sql_user,$sql_password);
+    @mysql_select_db($sql_database) or die( "Unable to select database");
+
+    $sql_query = 'SELECT * FROM customers WHERE username=' . $user;//welcome.safeSQL($user);
+
+    $result=mysql_query($sql_query);
+    $complete = mysql_result($result,0,"completeInfo");//TODO: get this boolean
+    if($complete){
+        echo "completeInfo is true<br>" . $complete;
+    }
+    else{
+        echo "completeInfo is false<br>" . $complete;
+        displayForm();
+    }
+    mysql_close();
+
 }
 else{
     echo "Please log in before you make a purchase.<br>";
@@ -43,6 +66,7 @@ if(is_numeric($nrOfTurtles) && $nrOfTurtles > 0){
 
 //Displays a form with the necessary fields that are missing in the DB
 function displayForm(){
+
 
 }
 
