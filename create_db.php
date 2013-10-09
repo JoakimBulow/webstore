@@ -11,10 +11,10 @@ $sql_query="CREATE TABLE customers (id int(6) NOT NULL auto_increment,username v
 address varchar(40), postal varchar(30), country varchar(25) ,creditcard varchar(25), completeInfo BOOLEAN, PRIMARY KEY (id),UNIQUE id (id),KEY id_2 (id))";
 
 mysql_query($sql_query);
-$salt = "salt";
-$pw = "monkey123";
+$salt = 'saltsalt';
+$pw = 'monkey123';
 $hashedpassword = sha1($salt . $pw);
-$sql_query = "INSERT INTO customers VALUES ('','JeNoZ',$hashedpassword,'salt','John','Smith','2nd Street','22220','Iceland','01234 567891', true)";
+$sql_query = "INSERT INTO customers VALUES ('','JeNoZ',$hashedpassword,'saltsalt','John','Smith','2nd Street','22220','Iceland','01234 567891', true)";
 mysql_query($sql_query);
 mysql_close();
 

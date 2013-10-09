@@ -71,7 +71,7 @@ else{
     }else{
         $salt = getSalt();
         $hashedPassword = sha1($salt . $password);
-        $sql_query = "INSERT INTO customers VALUES ('','$user','$hashedPassword','$salt','','','','','','',true)";
+        $sql_query = "INSERT INTO customers VALUES ('','$user','$hashedPassword','$salt','','','','','','',false)";
         mysql_query($sql_query);
     }
     mysql_close();
