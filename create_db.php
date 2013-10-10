@@ -1,6 +1,7 @@
-
 <?php
-
+/*
+ * This file is for debug purposes only.
+ */
 $sql_database="webmaster";
 
 mysql_connect();
