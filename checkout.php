@@ -54,15 +54,36 @@ else{
     $nrOfTurtles = htmlspecialchars($_POST["turtle"]);
 
     echo "You are trying to purchase: <br> " ;
+
     if(is_numeric($nrOfDogs) && $nrOfDogs > 0){
-        echo "" . $nrOfDogs . " dog(s)<br>";
+        $_SESSION['dogs']=$nrOfDogs;
+    }elseif(is_numeric($_SESSION['dogs'])){
+        //User can go to checkout directly from index.php and might have added to cart before.
+        $nrOfDogs = $_SESSION['dogs'];
+    }else{
+        $nrOfDogs = 0;
     }
+
+
     if(is_numeric($nrOfCats) && $nrOfCats > 0){
-        echo "" . $nrOfCats . " cat(s)<br>";
+        $_SESSION['cats']=$nrOfCats;
+
+    }elseif(is_numeric($_SESSION['cats'])){
+        $nrOfCats = $_SESSION['cats'];
+    }else{
+        $nrOfCats = 0;
     }
+
     if(is_numeric($nrOfTurtles) && $nrOfTurtles > 0){
-        echo "" . $nrOfTurtles . " turtle(s)<br>";
+        $_SESSION['turtles']=$nrOfTurtles;
+    }elseif(is_numeric($_SESSION['turtles'])){
+        $nrOfTurtles = $_SESSION['turtles'];
+    }else{
+        $nrOfTurtles = 0;
     }
+    echo "" . $nrOfDogs . " dog(s)<br>";
+    echo "" . $nrOfCats . " cat(s)<br>";
+    echo "" . $nrOfTurtles . " turtle(s)<br>";
 
 }
 

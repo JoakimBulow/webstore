@@ -38,7 +38,7 @@ echo ' to our pet store! Enter in the fields below how many pets you would like:
     Dogs: <input type="text" name="dog"><br>
     Cats: <input type="text" name="cat"><br>
     Turtles: <input type="text" name="turtle"><br>
-    <input type="submit">
+    <input type="submit" value="Add to cart">
 </form>
 </body>
 

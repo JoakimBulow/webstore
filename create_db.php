@@ -19,7 +19,7 @@ mysql_query($sql_query);
 $salt = 'saltsalt';
 $pw = 'monkey123';
 $hashedpassword = sha1($salt . $pw);
-$sql_query = "INSERT INTO customers VALUES ('','JeNoZ',$hashedpassword,'saltsalt','John','Smith','2nd Street','22220','Iceland','01234 567891', true)";
+$sql_query = "INSERT INTO customers VALUES ('','JeNoZ','$hashedpassword','saltsalt','John','Smith','2nd Street','22220','Iceland','01234 567891', true)";
 mysql_query($sql_query);
 mysql_close();
 

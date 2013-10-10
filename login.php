@@ -19,6 +19,6 @@ echo "Log in:";
 <form action="welcome.php" method="post">
     User name: <input type="text" name="user"><br>
     Password: <input type="text" name="password"><br>
-    <input type="submit">
+    <input type="submit" value="Log in">
 </body>
 </html>
