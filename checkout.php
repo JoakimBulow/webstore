@@ -1,5 +1,5 @@
 <?php
-//session_name("DASESSION");
+session_name("DASESSION");
 session_start();
 //Check if HTTPS is used:
 if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
@@ -8,7 +8,14 @@ if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
     header("Location: https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     exit();
 }
+?>
 
+<html>
+<BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
+
+</html>
+
+<?php
 
 if (isset($_SESSION['HTTP_USER_AGENT']))
 {
@@ -86,12 +93,12 @@ else{
     echo "" . $nrOfDogs . " dog(s)<br>";
     echo "" . $nrOfCats . " cat(s)<br>";
     echo "" . $nrOfTurtles . " turtle(s)<br>";
+    $price = $nrOfTurtles*100 + $nrOfCats*200 + $nrOfDogs*300;
+    echo"For at total of " . $price . " kr";
 
 }
 
 function displayForm(){
-//TODO: Display a form with the necessary fields that are missing in the DB
-
     echo "<br>
     <form action=\"checkout2.php\" method=\"post\">
          <div style=\"width:200px;\">
@@ -115,7 +122,3 @@ function safeSQL( $value ) {
 
 ?>
 
-<html>
-<BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
-
-</html>

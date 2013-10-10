@@ -7,7 +7,6 @@
     echo "<a href=logout.php>Log out</a><br>";
     echo "<a href=catalogue.php>Browse store</a><br>";
     echo "<a href=checkout.php>Check out</a><br>";
-    echo "<a href=create_db.php>Create DB</a><br>";
 ?>
 </font>
 </body>

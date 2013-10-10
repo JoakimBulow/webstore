@@ -37,9 +37,9 @@ echo ' to our pet store! Enter in the fields below how many pets you would like:
 <BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
 <form action="checkout.php" method="post">
     <div style="width:200px;">
-    Dogs:    <input type="text" size="8" name="dog"><br>
-    Cats:    <input type="text" size="8" name="cat"><br>
-    Turtles: <input type="text" size="8" name="turtle"><br><br>
+    Dogs (300:-)    <input type="text" size="5" name="dog"><br>
+    Cats (200:-)    <input type="text" size="5" name="cat"><br>
+    Turtles (100:-) <input type="text" size="5" name="turtle"><br><br>
     <input type="submit" value="Add to cart">
     </div>
 </form>

@@ -9,7 +9,11 @@ if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
     header("Location: https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     exit();
 }
-
+?>
+<html>
+<BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
+</html>
+<?php
 
 
 if (isset($_SESSION['HTTP_USER_AGENT']))
@@ -25,10 +29,10 @@ if (isset($_SESSION['HTTP_USER_AGENT']))
 
 if(isset($_SESSION['user'])){
     $user = $_SESSION['user'];
-    echo "Now you pay... (" . $user . ")";
+    echo "Time to pay " . $user . "...<br>";
 }
 else{
-    echo "WTF, guest?";
+    echo "WTF, guest?<br>";
 }
 $dataOK = false;
 
@@ -44,30 +48,28 @@ else{
     $country = htmlspecialchars($_POST["country"]);
     $creditcard = htmlspecialchars($_POST["creditcard"]);
 
-    if(checkValidity($creditcard)){
-        echo "Your credit card is valid<br>";
+    if(!checkValidity($creditcard)){
+        echo "Your credit card number is invalid<br>";
+    }else{
         if(strlen($surname) > 2 && strlen($surname) < 25 &&
             strlen($lastname) > 2 && strlen($lastname) < 25 &&
             strlen($address) > 2 && strlen($address) < 25 &&
             strlen($country) > 2 && strlen($country) < 25 &&
             strlen($postal) > 2 && strlen($postal) < 25)
         {
-            echo "all data ok<br>";
             $dataOK = true;
         }
     }
     if(!$dataOK){
-        echo "data was not OK, please enter valid data<br>";
+        echo "Data was not OK, please enter valid data.<br>";
         exit();
     }
 }
 
 //Connecting to database
 $sql_database="webmaster";
-//mysql_connect();
-$sql_user="webmaster";
-$sql_password="TempPass123";
-mysql_connect('localhost',$sql_user,$sql_password);
+mysql_connect();
+
 @mysql_select_db($sql_database) or die( "Unable to select database");
 
 $sql_query = 'SELECT * FROM customers WHERE username=' . safeSQL($user);
@@ -91,6 +93,16 @@ if(!$complete && $dataOK){
 
     mysql_query($sql_query);
 
+    echo "<br>This is your receipt<br>
+          Cats: " . $_SESSION['cats'];
+    echo "<br>Dogs: " . $_SESSION['dogs'];
+    echo "<br>Turtles: " . $_SESSION['turtles'];
+    $total=0;
+    $total = $_SESSION['dogs']*300 + $_SESSION['cats']*200 + $_SESSION['turtles']*100;
+    echo "<br>For a total of " . $total;
+
+}else{
+    echo "Data was not OK, please enter valid data.<br>";
 }
 mysql_close();
 function checkValidity($creditcard){

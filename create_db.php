@@ -3,12 +3,7 @@
 
 $sql_database="webmaster";
 
-$sql_user="webmaster";
-$sql_password="TempPass123";
-mysql_connect('localhost',$sql_user,$sql_password);
-
-
-//mysql_connect('localhost', ini_get('mysql.default.user'), ini_get('mysql.default.password'));
+mysql_connect();
 
 @mysql_select_db($sql_database) or die( "Unable to select database");
 

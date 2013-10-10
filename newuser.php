@@ -23,11 +23,11 @@ if ( strlen( $password ) < 8 ) {
 if ( !preg_match( '/[0-9]/' , $password )) {
     $passwordError[] = "The password must contain at least one integer.<br>";
 }
-/*
+
 if ( !preg_match( '/[A-Z]/', $password )) {
-    $passwordError[] = "The password must contain at least one special character.<br>";
+    $passwordError[] = "The password must contain at least one Capital letter.<br>";
 }
-*/
+
 $pswErrCount = count( $passwordError );
 
 if ( $pswErrCount > 0 ) {
@@ -41,15 +41,12 @@ if ( $pswErrCount > 0 ) {
 
 
 else{
-    echo 'adding user..<br>';
+
 //Password was secure
 
     //Connecting to database
     $sql_database="webmaster";
-    //mysql_connect();
-    $sql_user="webmaster";
-    $sql_password="TempPass123";
-    mysql_connect('localhost',$sql_user,$sql_password);
+    mysql_connect();
     @mysql_select_db($sql_database) or die( "Unable to select database");
 
     //Getting all user names in database
@@ -76,7 +73,7 @@ else{
         $user=safeSQL($user);
         $sql_query = "INSERT INTO customers VALUES ('',$user,'$hashedPassword','$salt','','','','','','',false)";
         mysql_query($sql_query);
-        echo "added<br>";
+        echo "You have successfully created an account.<br>";
     }
     mysql_close();
 }

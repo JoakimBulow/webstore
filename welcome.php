@@ -12,15 +12,10 @@ if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
 
 $user = htmlspecialchars($_POST["user"]);
 $password = htmlspecialchars($_POST["password"]);
-echo "You are trying to log in with the user name: " . $user . "...<br>";
 
 //Connecting to database
 $sql_database="webmaster";
-//mysql_connect();
-$sql_user="webmaster";
-$sql_password="TempPass123";
-mysql_connect('localhost',$sql_user,$sql_password);
-
+mysql_connect();
 @mysql_select_db($sql_database) or die( "Unable to select database");
 
 //Getting all user names in database
@@ -30,15 +25,12 @@ $result=mysql_query($sql_query);
 
 
 if(!empty($user) && $user == mysql_result($result,0,"username")){
-    echo 'yes that user exists<br>';
-
     $trueHashedPass = mysql_result($result,0,"password");
     $salt = mysql_result($result,0,"salt");
-    echo 'password in db: ' . $trueHashedPass . '<br>';
+    //echo 'password in db: ' . $trueHashedPass . '<br>';
     $hashedPass = hash('sha256', $salt . $password);
-    echo 'password entered: ' . $hashedPass . '<br>';
+    //echo 'password entered: ' . $hashedPass . '<br>';
     if($trueHashedPass == $hashedPass){
-        echo 'you are authenticated<br>';
         session_name("DASESSION");
         session_start();
         session_regenerate_id(true);
@@ -46,7 +38,7 @@ if(!empty($user) && $user == mysql_result($result,0,"username")){
         // store session data
         $_SESSION['user']=$user;
         $_SESSION['HTTP_USER_AGENT'] = $_SERVER['HTTP_USER_AGENT'];
-
+        echo "You are now logged in.<br>";
     }
 }
 else{
