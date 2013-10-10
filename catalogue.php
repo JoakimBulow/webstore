@@ -4,8 +4,9 @@ if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
     //If not, force HTTPS:
     header("HTTP/1.1 301 Moved Permanently");
     header("Location: https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    exit();
 }
-
+session_name("DASESSION");
 session_start();
 session_regenerate_id(true);
 
@@ -28,17 +29,19 @@ else{
     echo "Welcome guest";
 }
 
-echo ' to our pet store! Enter in the fields below how many pets you would like:<br>';
+echo ' to our pet store! Enter in the fields below how many pets you would like:<br><br>';
 ?>
 <html>
 <BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
 
 <BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
 <form action="checkout.php" method="post">
-    Dogs: <input type="text" name="dog"><br>
-    Cats: <input type="text" name="cat"><br>
-    Turtles: <input type="text" name="turtle"><br>
+    <div style="width:200px;">
+    Dogs:    <input type="text" size="8" name="dog"><br>
+    Cats:    <input type="text" size="8" name="cat"><br>
+    Turtles: <input type="text" size="8" name="turtle"><br><br>
     <input type="submit" value="Add to cart">
+    </div>
 </form>
 </body>
 

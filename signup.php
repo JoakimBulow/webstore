@@ -1,24 +1,23 @@
 <?php
 
-echo "Sign up:<br>";
+echo "Sign up:<br><br>";
 
 //Check if HTTPS is used:
 if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
     header("HTTP/1.1 301 Moved Permanently");
     header("Location: https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    exit();
    }
-else{
-    echo "USING HTTPS!<br>";
-}
 
 ?>
 <html>
 <BODY  BGCOLOR="black"  TEXT="white"  VLINK="yellow" LINK="yellowgreen">
 <form action="newuser.php" method="post">
-    User name: <input type="text" name="user"><br>
-    Password: <input type="text" name="password"><br>
-    Address: <input type="text" name="address"><br>
+    <div style="width:200px;">
+    User name: <input type="text" name="user" size="25"><br>
+    Password: <input type="password" size="25" name="password" size="25"><br><br>
     <input type="submit" value="Sign up">
+        </div>
 </form>
 </body>
 </html> 

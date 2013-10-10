@@ -1,13 +1,16 @@
 <?php
+session_name("DASESSION");
+session_start();
+session_regenerate_id(true);
 //Check if HTTPS is used:
 if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
     //If not, force HTTPS:
     header("HTTP/1.1 301 Moved Permanently");
     header("Location: https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    exit();
 }
 
-session_start();
-session_regenerate_id(true);
+
 
 if (isset($_SESSION['HTTP_USER_AGENT']))
 {
@@ -75,15 +78,23 @@ $complete = mysql_result($result,0,"completeInfo");
 
 if(!$complete && $dataOK){
 
-    $sql_query = "UPDATE customers SET first = '$surname', last = '$lastname', address = '$address', postal = '$postal',
-                    country = '$country', creditcard = '$creditcard', completeInfo = true WHERE username = '$user'";
+    $user = safeSQL($user);
+    $surname = safeSQL($surname);
+    $lastname = safeSQL($lastname);
+    $address = safeSQL($address);
+    $postal = safeSQL($postal);
+    $country = safeSQL($country);
+    $creditcard = safeSQL($creditcard);
+
+    $sql_query = "UPDATE customers SET surname = $surname, lastname = $lastname, address = $address, postal = $postal,
+                    country = $country, creditcard = $creditcard, completeInfo = true WHERE username = $user";
 
     mysql_query($sql_query);
 
 }
 mysql_close();
 function checkValidity($creditcard){
-    if(is_numeric($creditcard) && strlen($creditcard) == 8)
+    if(is_numeric($creditcard) && strlen($creditcard) == 16)
         return true;
     else
         return false;

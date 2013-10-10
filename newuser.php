@@ -4,6 +4,7 @@ if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
     //If not, force HTTPS:
     header("HTTP/1.1 301 Moved Permanently");
     header("Location: https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    exit();
 }
 
 echo "You entered: " . $user = htmlspecialchars($_POST["user"]);
@@ -71,8 +72,9 @@ else{
         echo "That user name is already in use.<br>";
     }else{
         $salt = getSalt();
-        $hashedPassword = sha1($salt . $password);
-        $sql_query = "INSERT INTO customers VALUES ('','$user','$hashedPassword','$salt','','','','','','',false)";
+        $hashedPassword = hash('sha256', $salt . $password);
+        $user=safeSQL($user);
+        $sql_query = "INSERT INTO customers VALUES ('',$user,'$hashedPassword','$salt','','','','','','',false)";
         mysql_query($sql_query);
         echo "added<br>";
     }

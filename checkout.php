@@ -1,12 +1,14 @@
 <?php
+//session_name("DASESSION");
+session_start();
 //Check if HTTPS is used:
 if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
     //If not, force HTTPS:
     header("HTTP/1.1 301 Moved Permanently");
     header("Location: https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    exit();
 }
 
-session_start();
 
 if (isset($_SESSION['HTTP_USER_AGENT']))
 {
@@ -55,7 +57,7 @@ else{
 
     echo "You are trying to purchase: <br> " ;
 
-    if(is_numeric($nrOfDogs) && $nrOfDogs > 0){
+    if(is_numeric($nrOfDogs) && $nrOfDogs >= 0){
         $_SESSION['dogs']=$nrOfDogs;
     }elseif(is_numeric($_SESSION['dogs'])){
         //User can go to checkout directly from index.php and might have added to cart before.
@@ -65,7 +67,7 @@ else{
     }
 
 
-    if(is_numeric($nrOfCats) && $nrOfCats > 0){
+    if(is_numeric($nrOfCats) && $nrOfCats >= 0){
         $_SESSION['cats']=$nrOfCats;
 
     }elseif(is_numeric($_SESSION['cats'])){
@@ -74,7 +76,7 @@ else{
         $nrOfCats = 0;
     }
 
-    if(is_numeric($nrOfTurtles) && $nrOfTurtles > 0){
+    if(is_numeric($nrOfTurtles) && $nrOfTurtles >= 0){
         $_SESSION['turtles']=$nrOfTurtles;
     }elseif(is_numeric($_SESSION['turtles'])){
         $nrOfTurtles = $_SESSION['turtles'];
@@ -90,14 +92,16 @@ else{
 function displayForm(){
 //TODO: Display a form with the necessary fields that are missing in the DB
 
-    echo "<br><br>
+    echo "<br>
     <form action=\"checkout2.php\" method=\"post\">
-    Surname: <input type=\"text\" name=\"surname\"><br>
-    Last name: <input type=\"text\" name=\"lastname\"><br>
-    Address: <input type=\"text\" name=\"address\"><br>
-    Postal Code: <input type=\"text\" name=\"postal\"><br>
-    Country: <input type=\"text\" name=\"country\"><br>
-    Credit Card number: <input type=\"text\" name=\"creditcard\"><br>
+         <div style=\"width:200px;\">
+            Surname: <input type=\"text\" name=\"surname\"><br>
+            Last name: <input type=\"text\" name=\"lastname\"><br>
+            Address: <input type=\"text\" name=\"address\"><br>
+            Postal Code: <input type=\"text\" name=\"postal\"><br>
+            Country: <input type=\"text\" name=\"country\"><br>
+            Credit Card number: <input type=\"text\" name=\"creditcard\"><br><br>
+        </div>
     <input type=\"submit\" value=\"Commit to buy\">
     <br><br>
     </body>
